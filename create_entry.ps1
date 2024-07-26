@@ -11,6 +11,9 @@ $computerInfo = [ComputerInfo]::new()
 $computerInfo.location = Read-Host -Prompt "Enter the general location of the machine (room, department, etc.)"
 $computerInfo.description = Read-Host -Prompt "Enter a general description of the machine (purpose, personal or general use, etc.)"
 $computerInfo.inUse = $host.UI.PromptForChoice("", "Is this machine currently in use?", ("&No", "&Yes"), 1)
+if($computerInfo.inUse){
+    $computerInfo.owner = Read-Host -Prompt "Who is the owner/primary user of this machine?"
+}
 
 $sheetName = $sites[$host.UI.PromptForChoice('', "Enter the location code to create an entry for", $sites, 0)].Replace("&", "") + "_Inventory.xlsx"
 $sheetPath = "$PSScriptRoot\$sheetName"
@@ -22,12 +25,9 @@ if(-not [System.IO.File]::Exists($sheetPath)){
 $data = Import-Excel $sheetPath
 $duplicateEntry = ($false, 0)
 
-Write-Host $data
-
 $i = 0
 foreach($item in $data){
     if($item.Serial -eq $computerInfo.serial){
-        Write-Host "Duplicate!!!"
         $duplicateEntry = ($true, $i)
     }
     $i++

@@ -60,6 +60,7 @@ class ComputerInfo {
     [PSCustomObject[]]$MACAddresses
     [string]$serial
     [string]$os
+    [string]$owner
     [bool]$inUse
     [bool]$sophos
     [bool]$sysaid
@@ -89,6 +90,7 @@ class ComputerInfo {
         $this.MACAddresses = $value.MACAddresses
         $this.serial = $value.serial
         $this.os = $value.os
+        $this.owner = $value.owner
         $this.inUse = $value.inUse
         $this.sophos = $value.sophos
         $this.sysaid = $value.sysaid
@@ -104,6 +106,7 @@ class ComputerInfo {
         $this.MACAddresses = $value.MACAddresses
         $this.serial = $value.serial
         $this.os = $value.os
+        $this.owner = $value.owner
         $this.inUse = $value.inUse
         $this.sophos = $value.sophos
         $this.sysaid = $value.sysaid
@@ -125,6 +128,7 @@ class ComputerInfo {
             "MAC Addresses" = $this.MACString()
             "Serial" = $this.serial
             "OS" = $this.os
+            "Owner" = $this.owner
             "In Use?" = $this.inUse
             "Sophos?" = $this.sophos
             "Sysaid?" = $this.sysaid
