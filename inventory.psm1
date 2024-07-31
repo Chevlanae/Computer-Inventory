@@ -87,6 +87,7 @@ class ComputerInfo {
         $this.description = $value.description
         $this.deviceType = $value.deviceType
         $this.manufacturer = $value.manufacturer
+        $this.model = $value.model
         $this.MACAddresses = $value.MACAddresses
         $this.serial = $value.serial
         $this.os = $value.os
@@ -103,6 +104,7 @@ class ComputerInfo {
         $this.description = $value.description
         $this.deviceType = $value.deviceType
         $this.manufacturer = $value.manufacturer
+        $this.model = $value.model
         $this.MACAddresses = $value.MACAddresses
         $this.serial = $value.serial
         $this.os = $value.os
@@ -125,6 +127,7 @@ class ComputerInfo {
             "Description" = $this.description
             "Device Type" = $this.deviceType
             "Manufacturer" = $this.manufacturer
+            "Model" = $this.model
             "MAC Addresses" = $this.MACString()
             "Serial" = $this.serial
             "OS" = $this.os

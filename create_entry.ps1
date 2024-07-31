@@ -19,10 +19,11 @@ if(-not [System.IO.File]::Exists($sheetPath)){
 }
 
 $data = Import-Csv -Path $sheetPath
-$duplicateEntry = ($false, 0)
 
 if($data -and ($data.GetType()).Name -eq "Object[]"){
+
     $i = 0
+    $duplicateEntry = ($false, 0)
     foreach($item in $data){
         if($item.Serial -eq $computerInfo.serial){
             $duplicateEntry = ($true, $i)
@@ -40,12 +41,10 @@ if($data -and ($data.GetType()).Name -eq "Object[]"){
                 $data[$duplicateEntry[1]] = $computerInfo.GenerateExcelRow()
             }
         }
+        
     } else {
         $data += $computerInfo.GenerateExcelRow()
     }
-    
-    
-
 } 
 
 elseif($data -and ($data.GetType()).Name -eq "PSCustomObject"){
@@ -55,9 +54,6 @@ elseif($data -and ($data.GetType()).Name -eq "PSCustomObject"){
 else {
     $data = $computerInfo.GenerateExcelRow()
 }
-
-
-
 
 Remove-Item -Path $sheetPath -Force
 $data | Select-Object -Property * | Export-Csv -path $sheetPath
